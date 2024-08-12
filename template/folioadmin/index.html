@@ -1,0 +1,124 @@
+
+{% extends "folioadmin/base.html" %}{% load static %}{% block content %}
+
+  <main id="main" class="main">
+
+    <div class="pagetitle">
+      <h1>Admin</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="{% url 'index' %}">Home</a></li>
+        </ol>
+      </nav>
+    </div><!-- End Page Title -->
+
+    <section class="section">
+
+      <div class="row">
+        <div class="col-xl-2 col-sm-6 p-b-15 lbl-card text-center">
+          <div class="card card-mini dash-card card-1">
+            <a href="{% url 'bannerpage'  %}">
+              <div class="card-body">
+                <img src="{% static 'assets/img/8812070.png' %}" class="p-4" width="100" alt="">
+                <h6 class="mb-1" style="color:#88aaf3">Banner Page </h6>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <div class="col-xl-2 col-sm-6 p-b-15 lbl-card text-center">
+          <div class="card card-mini dash-card card-1">
+            <a href="{% url 'aboutpage' %}">
+              <div class="card-body">
+                <img src="{% static 'assets/img/8812070.png' %}" class="p-4" width="100" alt="">
+                <h6 class="mb-1" style="color:#88aaf3">About Page</h6>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <div class="col-xl-2 col-sm-6 p-b-15 lbl-card text-center">
+          <div class="card card-mini dash-card card-1">
+            <a href="{% url 'educationpage' %}">
+              <div class="card-body">
+                <img src="{% static 'assets/img/8812070.png' %}" class="p-4" width="100" alt="">
+                <h6 class="mb-1" style="color:#88aaf3">Education Page</h6>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <div class="col-xl-2 col-sm-6 p-b-15 lbl-card text-center">
+          <div class="card card-mini dash-card card-1">
+            <a href="{% url 'skillspage' %}">
+              <div class="card-body">
+                <img src="{% static 'assets/img/8812070.png' %}" class="p-4" width="100" alt="">
+                <h6 class="mb-1" style="color:#88aaf3">Skills Page</h6>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <div class="col-xl-2 col-sm-6 p-b-15 lbl-card text-center">
+          <div class="card card-mini dash-card card-1">
+            <a href="{% url 'projectpage' %}">
+              <div class="card-body">
+                <img src="{% static 'assets/img/8812070.png' %}" class="p-4" width="100" alt="">
+                <h6 class="mb-1" style="color:#88aaf3">Project Page</h6>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <div class="col-xl-2 col-sm-6 p-b-15 lbl-card text-center">
+          <div class="card card-mini dash-card card-1">
+            <a href="{% url 'servicepage' %}">
+              <div class="card-body">
+                <img src="{% static 'assets/img/8812070.png' %}" class="p-4" width="100" alt="">
+                <h6 class="mb-1" style="color:#88aaf3">Service Page</h6>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <div class="col-xl-2 col-sm-6 p-b-15 lbl-card text-center">
+          <div class="card card-mini dash-card card-1">
+            <a href="{% url 'socialaccount' %}">
+              <div class="card-body">
+                <img src="{% static 'assets/img/8812070.png' %}" class="p-4" width="100" alt="">
+                <h6 class="mb-1" style="color:#88aaf3">Social Account Page</h6>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <div class="col-xl-2 col-sm-6 p-b-15 lbl-card text-center">
+          <div class="card card-mini dash-card card-1">
+            <a href="{% url 'interestpage' %}">
+              <div class="card-body">
+                <img src="{% static 'assets/img/8812070.png' %}" class="p-4" width="100" alt="">
+                <h6 class="mb-1" style="color:#88aaf3">Interest Page</h6>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <div class="col-xl-2 col-sm-6 p-b-15 lbl-card text-center">
+          <div class="card card-mini dash-card card-1">
+            <a href="{% url 'massagepage' %}">
+              <div class="card-body">
+                <img src="{% static 'assets/img/8812070.png' %}" class="p-4" width="100" alt="">
+                <h6 class="mb-1" style="color:#88aaf3">Massage</h6>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    
+
+
+  </main><!-- End #main -->
+
+  {% endblock %}

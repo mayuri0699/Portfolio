@@ -1,0 +1,72 @@
+{% extends "folioadmin/base.html" %}{% load static %}{% block content %}
+<main id="main" class="main">
+
+  <div class="pagetitle">
+    <h1>About Edit</h1>
+    <nav>
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{% url 'aboutpage' %}">Back to Table</a></li>
+      </ol>
+    </nav>
+  </div><!-- End Page Title -->
+
+  <section class="section">
+    <div class="row">
+      <div class="col-lg-12">
+
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">About Form </h5>
+
+            <form action="{% url 'about_update' aboutpageobj.id  %}" method="POST" enctype="multipart/form-data">
+              {% csrf_token %}
+              <div class="row mb-3">
+                  <label for="inputNanme4" class="form-label">Email</label>
+                  <input type="email" name="email" value="{{aboutpageobj.email}}" class="form-control" id="inputNanme4">
+              </div>
+              <!-- <div class="row mb-3">
+                <label for="inputNanme4" class="form-label">Date Of Birth</label>
+                <input type="date" name="birthday" value="{{aboutpageobj.birthday}}" placeholder="YYYY-MM-DD" form-control" id="inputNanme4">
+              </div> -->
+              <div class="row mb-3">
+                <label for="inputNanme4" class="form-label">Phone Number</label>
+                <input type="number" name="phone_no" value="{{aboutpageobj.phone_no}}" class="form-control" id="inputNanme4">
+                
+              </div>
+              <div class="row mb-3">
+                <label for="inputNanme4" class="form-label">Age</label>
+                <input type="number" name="age" value="{{aboutpageobj.age}}" class="form-control" id="inputNanme4">
+                
+              </div><br>
+              <div class="row mb-3">
+                <label for="inputName4" class="form-label">About</label>
+                <textarea name="about" id="inputName4" cols="30" rows="10">{{ aboutpageobj.about }}</textarea>
+              </div>
+              
+              <div class="row mb-3">
+                <label for="inputName4" class="form-label">Address</label>
+                <textarea name="address" id="inputName4" cols="30" rows="10">{{ aboutpageobj.address }}</textarea>
+              </div>
+              <div class="row mb-3">
+                <label for="profile">Year Of Experience</label>
+                <input type="text" class="form-control" name="years_exp" value="{{aboutpageobj.years_exp}}" id="profile" value="">
+              </div>
+              <div class="row mb-3">
+                <label for="inputNumber" class="col-sm-2 col-form-label">Image Upload</label>
+                <div class="col-sm-10">
+                  <input class="form-control" type="file" name="profilepic1" value="{{aboutpageobj.profilepic1}}" id="formFile">
+                  {% if aboutpageobj.profilepic1 %}
+                  <a href="{{i.profilepic1.url}}" target ="_blank"><img src="{{aboutpageobj.profilepic1.url}}" height="70px" width="70px"></a>
+                  {% endif %}
+                </div>
+              </div>
+              <div class="row mb-3">
+                <label class="col-sm-2 col-form-label">Submit Button</label>
+                <div class="col-sm-10">
+                  <button type="submit" class="btn btn-primary">Submit Form</button>
+                </div>
+              </div>
+            </form>
+
+             
+      {% endblock %}

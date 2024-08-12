@@ -1,0 +1,125 @@
+{% extends "folioadmin/base.html" %}{% load static %}{% block content %}
+
+<main id="main" class="main">
+  <div class="d-flex" style="justify-content: space-between;">
+    <div class="pagetitle">
+      <h1>Banner Page </h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="{% url 'index' %}">Home</a></li>
+          <li class="breadcrumb-item active">Banner</li>
+        </ol>
+      </nav>
+    </div>
+    <!--  -->
+    {% if bannerpageobj %}
+    <div class="add_btn" style="justify-content:end;">
+      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#basicModal"
+        style="display: none;">
+        Add Data
+      </button>
+    </div>
+    {% else %}
+    <div class="add_btn" style="justify-content:end;">
+      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#basicModal">
+        Add Data
+      </button>
+    </div>
+    {% endif %}
+  </div>
+  <!--  -->
+    <div class="modal fade" id="basicModal" tabindex="-1">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" >Add  Data</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <form action="{% url 'bannerform' %}" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="modal-body">
+              <div class="col-12">
+                <label for="inputNanme4" class="form-label">Name <span class="text-danger">*</span></label>
+                <input type="text" name="name" class="form-control" id="inputNanme4" required>
+              </div>
+              <div class="col-12">
+                <div class="form-group">
+                    <label for="profile">Profile <span class="text-danger">*</span></label>
+                    <input type="text" class="form-control" name="profile" id="profile" value="" required>
+                </div>
+              </div>
+              
+              <div class="col-12">
+                <label for="inputEmail4" class="form-label">Image <span class="text-danger">*</span></label>
+                <input type="file" name="profilepic" class="form-control" id="inputEmail4" required>
+              </div>
+              <div class="col-12">
+                <label for="inputEmail4" class="form-label">Upload Resume<span class="text-danger">*</span></label>
+                <input type="file" name="resume" class="form-control" id="inputEmail4" required>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-primary btn-pill">Save </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div><!-- End Basic Modal--><!-- End Page Title -->
+
+    <section class="section">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="card">
+            <div class="card-body">
+               <!-- Table with stripped rows -->
+              <table class="table" style="margin: 0 auto; text-align: center;">
+
+                <thead>
+                  <tr>
+                    <th scope="col">SR no</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Profile</th>
+                    <th scope="col">Image</th>
+                    <th scope="col">Resume</th>
+                    <th scope="col">Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% if bannerpageobj %}
+                  <tr>
+                    <td>1.</td>
+                    <td>{{bannerpageobj.name}}</td>
+                    <td>{{bannerpageobj.profile}}</td>
+                    <td>
+                      {% if bannerpageobj.profilepic %}
+                        <img src="{{bannerpageobj.profilepic.url}}" height="50px" width="100px" >                                    
+                      {% endif %}                      
+                    </td>
+                    <td>
+                      {% if bannerpageobj.resume %}
+                        <a href="{{bannerpageobj.resume.url}}">{{bannerpageobj.resume}}</a>   
+                      {% endif %}                 
+                    </td>
+                    <td>
+                      <div class="btn-group" role="group" aria-label="Basic example">
+                        <a class="dropdown-item" href="{% url 'banner_update' bannerpageobj.id %}"><i class="bi bi-pencil-square"></i></a>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <a class="dropdown-item" href="{% url 'banner_delete' bannerpageobj.id %}"><i class="bi bi-trash3-fill"></i></a> 
+                      </div>
+                    </td>
+                  </tr>
+                  {% else %}
+                  {% endif %}
+                </tbody>
+              </table>
+              <!-- End Table with stripped rows -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main><!-- End #main -->
+
+  {% endblock %}
+ 

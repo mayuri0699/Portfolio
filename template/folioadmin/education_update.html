@@ -1,0 +1,57 @@
+{% extends "folioadmin/base.html" %}{% load static %}{% block content %}
+<main id="main" class="main">
+
+  <div class="pagetitle">
+    <h1>Education Edit</h1>
+    <nav>
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{% url 'educationpage' %}">Back to Table</a></li>
+      </ol>
+    </nav>
+  </div><!-- End Page Title -->
+
+  <section class="section">
+    <div class="row">
+      <div class="col-lg-12">
+
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Education Form </h5>
+
+            <form action="{% url 'education_update' educationobj.id  %}" method="POST" enctype="multipart/form-data">
+              {% csrf_token %}
+              <div class="row mb-3">
+                <label for="inputText" class="col-sm-2 col-form-label">Cource/Degree</label>
+                <div class="col-sm-10">
+                  <input type="text" name="education" value="{{educationobj.education}}" class="form-control">
+                </div>
+              </div>
+              <div class="row mb-3">
+                <label for="inputText" class="col-sm-2 col-form-label">School/Univercity</label>
+                <div class="col-sm-10">
+                  <input type="text" name="university" value="{{educationobj.university}}" class="form-control">
+                </div>
+              </div>
+              <div class="row mb-3">
+                <label for="inputText" class="col-sm-2 col-form-label">YearGrade/Score</label>
+                <div class="col-sm-10">
+                  <input type="text" name="year" value="{{educationobj.year}}" class="form-control">
+                </div>
+              </div>
+              <div class="row mb-3">
+                <label for="inputText" class="col-sm-2 col-form-label">Grade/Score</label>
+                <div class="col-sm-10">
+                  <input type="text" name="percentage" value="{{educationobj.percentage}}" class="form-control">
+                </div>
+              </div>
+              
+              <div class="row mb-3">
+                <label class="col-sm-2 col-form-label">Submit Button</label>
+                <div class="col-sm-10">
+                  <button type="submit" class="btn btn-primary">Submit Form</button>
+                </div>
+              </div>
+            </form>
+
+             
+      {% endblock %}

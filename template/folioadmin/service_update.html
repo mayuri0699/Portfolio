@@ -1,0 +1,55 @@
+{% extends "folioadmin/base.html" %}{% load static %}{% block content %}
+<main id="main" class="main">
+
+  <div class="pagetitle">
+    <h1>Service Edit</h1>
+    <nav>
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{% url 'servicepage' %}">Back to Table</a></li>
+      </ol>
+    </nav>
+  </div><!-- End Page Title -->
+
+  <section class="section">
+    <div class="row">
+      <div class="col-lg-12">
+
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Service Form </h5>
+
+            <form action="{% url 'service_update' servicesobj.id  %}" method="POST" enctype="multipart/form-data">
+              {% csrf_token %}
+              <div class="row mb-3">
+                <label for="inputText" class="col-sm-2 col-form-label">Project Name</label>
+                <div class="col-sm-10">
+                  <input type="text" name="service_name" value="{{servicesobj.service_name}}" class="form-control">
+                </div>
+              </div>
+
+              <div class="row mb-3">
+                <label for="inputText" class="col-sm-2 col-form-label">About Service</label>
+                <div class="col-sm-10">
+                  <textarea name="about_service" id="" cols="30" rows="10">{{servicesobj.about_service}}</textarea>
+                </div>
+              </div>
+              
+              <div class="row mb-3">
+                <label for="inputNumber" class="col-sm-2 col-form-label">Project Image</label>
+                <div class="col-sm-10">
+                  <input class="form-control" type="file" name="service_pic" value="{{servicesobj.service_pic}}" id="formFile">
+                  {% if servicesobj.service_pic %}
+                  <a href="{{i.service_pic.url}}" target ="_blank"><img src="{{servicesobj.service_pic.url}}" height="70px" width="70px"></a>
+                  {% endif %}
+                </div>
+              </div>
+              <div class="row mb-3">
+                <label class="col-sm-2 col-form-label">Submit Button</label>
+                <div class="col-sm-10">
+                  <button type="submit" class="btn btn-primary">Submit Form</button>
+                </div>
+              </div>
+            </form>
+
+             
+      {% endblock %}
