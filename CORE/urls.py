@@ -25,8 +25,7 @@ urlpatterns = [
     path('folio/',include('apps.folio.urls')),
     path('user_admin/',include('apps.userapp.urls')),
 
-]
-# + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 
 
