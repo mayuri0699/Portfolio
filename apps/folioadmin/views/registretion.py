@@ -18,58 +18,17 @@ class Signin(View):
             user = authenticate(email = email, password = password)
             if user is not None:
                 login(request, user)
-                return redirect("/index")
+                return redirect("index")
             else:
                 messages.error(request,"Sorry, Incorrect Password. Please Try Again Or Reset Your Password If Needed.")
                 return redirect("/")
         except:
             messages.error(request,"Something Went Wrong.")
             return redirect("/")
-
-# class Signup(View):
-#     def get(self, request):
-#         return render(request,'template_folioadmin/auth-register.html')
-    
-#     def post(self, request):
-#         try:
-#             name = request.POST.get('name')
-#             phone_number = request.POST.get('phone_number')
-#             email = request.POST.get("email").lower()
-#             password = request.POST.get("password")
-#             confirm_password = request.POST.get('confirm_password')
-#             i_agree_on_terms_and_conditions = request.POST.get('terms')
-
-#             obj_user = UserAuth.objects.filter(email=email).exists()
-#             if obj_user:
-#                 messages.error(self, "User already exists with email address")
-#             if password != confirm_password:
-#                 messages.error(self, "Password is incorrect")
-            
-#             obj_user = UserAuth.objects.create_user(
-#                 email=email, 
-#                 password=password,
-#                 is_active = True,
-#                 )
-            
-#             ProfileTable.objects.create(
-#                 user_auth = obj_user,
-#                 name = name,
-#                 phone_number = phone_number,
-#                 i_agree_on_terms_and_conditions=i_agree_on_terms_and_conditions)
-            
-#             print(name)
-#             print(phone_number)
-#             print(email)
-#             print(password)
-#             print(confirm_password)
-#             print(i_agree_on_terms_and_conditions)
-#             messages.success(request, "Registration successful!")
-#             return redirect("/")
-            
-#         except:
-#             messages.error(request,"Something Went Wrong.")
-#             # return redirect("/")
-
+        
+class Index(View):
+    def get(self, request):
+        return render(request, 'template_folioadmin/index.html')
 
 class Signup(View):
     def get(self, request):
@@ -119,7 +78,7 @@ class Logout(View):
     
 class ForgetPasswordView(View):
     def get(self, request):
-        return render(request, 'forget-password.html')
+        return render(request, 'template_folioadmin/auth-forget-pass.html')
 
     def post(self, request):
         email = request.POST.get('email').lower()
@@ -129,7 +88,7 @@ class ForgetPasswordView(View):
 
         try:
             user = UserAuth.objects.get(email=email)
-            messages.success(request, "User found. You can reset your password now.")
+            # messages.success(request, "User found. You can reset your password now.")
             return redirect('reset_password')
         except UserAuth.DoesNotExist:
             messages.error(request, "User not found with the provided email")
@@ -140,29 +99,28 @@ class ForgetPasswordView(View):
         
 class ResetPasswordView(View):
     def get(self, request):
-        return render(request, 'reset-password.html')
+        return render(request, 'template_folioadmin/auth-reset-pass.html')
 
     def post(self, request):
-        email = request.POST.get('email')
-        new_password = request.POST.get('new_password')
+        email = request.POST.get('email').lower()
+        new_password = request.POST.get('password')
         confirm_password = request.POST.get('confirm_password')
 
         if not email:
             messages.error(request, "Email is required")
             return redirect('reset_password')
-
-        try:
-            user = UserAuth.objects.get(email=email)
-            if new_password  != confirm_password:
+        
+        if new_password != confirm_password:
                 messages.error(request, "Passwords do not match")
                 return redirect('reset_password')
 
+        try:
+            user = UserAuth.objects.get(email=email)
             # Update user password
             user.set_password(new_password)
             user.save()
-
             messages.success(request, "Password reset Successfully")
-            return redirect('index')  # Redirect to login page after successful password reset
+            return redirect('sign_in')  # Redirect to login page after successful password reset
         except UserAuth.DoesNotExist:
             messages.error(request, "User not found with the provided email")
             return redirect('reset_password')

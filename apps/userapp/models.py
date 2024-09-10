@@ -72,7 +72,7 @@ class ProfileTable(BaseContent):
     i_agree_on_terms_and_conditions = models.BooleanField(default=False)
 
     def __str__(self):
-        return self.name
+        return self.first_name
     
     DisplayList = ['id','user_auth','first_name','last_name','phone_number','date_of_birth','nationality','marital_status','religion','gender','i_agree_on_terms_and_conditions']
     searchable_fields = ['id','name']
